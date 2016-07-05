@@ -1,0 +1,125 @@
+.toolbar {
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: background .2s, top .2s, box-shadow .2s;
+
+  .toolbar-header {
+    float: left;
+  }
+
+  .logo {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 20px;
+    padding: 2px 0;
+    display: inline-block;
+    text-decoration: none !important;
+
+    > span {
+      display: inline-block;
+      height: 40px;
+      padding: 6px 12px;
+      &:last-child {
+        border-left: 1px solid rgba(255,255,255,.2);
+      }
+    }
+  }
+
+  .toolbar-btn{
+    height: 44px;
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    background: none;
+    border: none;
+    font-size: 16px;
+    direction: inline-block;
+
+    &.toolbar-btn-icon {
+      width: 44px;
+    font-size: 20px;
+    }
+  }
+
+  .toolbar-search{
+    margin: 0 auto;
+    position: relative;
+    max-width: 600px;
+
+    > i.fa-search {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      display: block;
+      font-size: 18px;
+      text-align: center;
+      width: 54px;
+      height: 44px;
+      padding: 12px;
+      cursor: pointer;
+      color: $colorPrimary;
+    }
+
+    > input {
+      border-radius: 2px;
+      background: rgba(255,255,255,.8);
+      border: none;
+      height: 44px;
+      font-size: 18px;
+      color: $colorPrimary;
+      width: 100%;
+      padding: 8px 20px;
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+      transition: color .3s, background .3s, text-align .2s;
+
+      &:focus {
+        text-align: left;
+        padding-left: 54px;
+        background: #fff;
+      }
+    }
+  }
+
+  &.hidden {
+    display: block !important;
+    top: -64px;
+  }
+
+  &.toolbar-light {
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0,0,0,.1);
+
+    .toolbar-btn {
+      color: #666;
+    }
+
+    .logo {
+      color: #222;
+      > span:last-child {
+        border-color: #ddd;
+      }
+    }
+
+    .toolbar-search{
+      i.fa-search {
+        color: rgba(0,0,0,.4)  ;
+      }
+
+      > input {
+        background: rgba(0,0,0,.1);
+        color: #333;
+
+        &:focus + i.fa-search {
+          color: rgba(0,0,0,.6);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import 'variables';
+
+@import 'vendor/normalize';
+@import 'vendor/roboto';
+@import 'vendor/font-awesome';
+
+@import 'elements/toolbar';
+@import 'elements/buttons';
+@import 'elements/card';
+@import 'elements/player';
+
+@import 'global';
+@import 'home';
+
+
+html {
+  box-sizing: border-box;
+}
+
+body, input, textarea, button {
+  font-family: Roboto, sans-serif;
+}
+
+a{
+  color: $colorPrimary;
+  cursor: pointer
+}
+
+input, button, textarea{
+  &, &:hover, &:focus{
+    outline: none !important
+  }
+}

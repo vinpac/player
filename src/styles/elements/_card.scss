@@ -1,0 +1,19 @@
+.card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .card-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+a.card {
+  display: inline-block;
+}

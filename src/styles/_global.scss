@@ -1,0 +1,84 @@
+.no-margin {
+  margin: 0 !important;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.margin-left-lg {
+  margin-left: 30px;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.row-sm {
+  margin-left: -5px;
+  margin-right: -5px;
+
+  .col-xs-7,
+  .col-xs-5,
+  .col-xs-9,
+  .col-xs-3 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.fill-width {
+  width: 100%;
+}
+
+
+.subtitle {
+  font-size: 20px;
+  color: rgba(255,255,255, .6);
+}
+
+.title {
+  font-size: 60px;
+  font-weight: 300;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.text-link {
+  &, &:hover {
+    color: #222;
+    text-decoration: none;
+  }
+}
+
+.text-light {
+  color: #fff;
+}
+
+.text {
+  font-size: 20px;
+  line-height: 36px;
+}
+
+.text-md {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.legend {
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+
+  &.text-link {
+    color: #999;
+    &:hover, &:focus {
+      color: #777;
+    }
+  }
+}
+
+.flex-fill {
+  display: flex;
+  flex: 1 1 auto;
+}

@@ -1,0 +1,41 @@
+.btn {
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 15px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  height: 46px;
+  display: inline-block;
+}
+
+.btn-light {
+  background: rgba(255,255,255,.9);
+  color: $colorPrimary;
+  &:hover, &:focus {
+    background: #fff;
+  }
+}
+
+.btn-primary {
+  background: $colorPrimary;
+  color: #fff;
+  &:hover, &:focus {
+    background: lighten($colorPrimary, 10%);
+  }
+}
+
+.btn-bordered {
+  border: 1px solid rgba(255,255,255,.6);
+  color: #fff;
+  background: none;
+  &:hover, &:focus {
+    border-color: #fff;
+  }
+}
+
+.btn-wide {
+  padding-left: 50px;
+  padding-right: 50px;
+}
