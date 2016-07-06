@@ -1,12 +1,14 @@
-import HomeView from "../views/HomeView";
 import React, { PropTypes } from 'react'
+import { Router } from 'react-router'
 import { Provider } from 'react-redux'
-import CoreLayout from "../layouts/CoreLayout";
 
-export default class Root extends React.Component {
-  static propTypes = {
+export default class AppContainer extends React.Component {
+static propTypes = {
+    history: PropTypes.object.isRequired,
+    routes: PropTypes.object.isRequired,
+    routerKey: PropTypes.number,
     store: PropTypes.object.isRequired
-  };
+  }
 
   get devTools () {
     if (__DEBUG__) {
@@ -24,12 +26,10 @@ export default class Root extends React.Component {
   }
 
   render () {
+    const { history, routes, routerKey, store } = this.props
     return (
       <Provider store={this.props.store}>
-        <CoreLayout>
-          <HomeView />
-          {this.devTools}
-        </CoreLayout>
+        <Router history={history} children={routes} key={routerKey} />
       </Provider>
     )
   }

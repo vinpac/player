@@ -13,12 +13,23 @@ class HomeView extends React.Component {
     super(props);
     this.onClick = this.onClick.bind(this)
     this.state = {}
+    this.getAlbum = this.getAlbum.bind(this);
   }
 
   componentDidMount() {
+    this.getAlbum(this.props.params.id)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id != this.props.params.id) {
+      this.getAlbum(nextProps.params.id);
+    }
+  }
+
+  getAlbum(id) {
     const self = this;
     AlbumModel
-      .findOne({ "id": "1" })
+      .findOne({ id })
       .then( album => AuthorModel
           .findOne({ "id": album.authorId })
           .then(author => ({ album, author }))
@@ -63,6 +74,10 @@ class HomeView extends React.Component {
         {
           `
             .home-view .cover {
+              background-color: ${ album.color }
+            }
+
+            .toolbar-search-ative {
               background-color: ${ album.color }
             }
 

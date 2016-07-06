@@ -1,16 +1,30 @@
+import ToolbarSearch from './ToolbarSearch';
 import classnames from 'classnames';
 import React from 'react';
 
 export default class Toolbar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      searchActive: false
+    }
+  }
+
+  get className() {
+    return classnames(
+      "toolbar",
+      {
+        "toolbar-light": !!this.props.light,
+        "toolbar-search-ative": this.state.searchActive
+      },
+      this.props.className
+    );
   }
 
   render() {
     return (
-      <header className={ classnames("toolbar", {
-        "toolbar-light": !!this.props.light
-      }) }>
+      <header
+        className={ this.className }>
         <div className="toolbar-header">
           <button className="toolbar-btn toolbar-btn-icon">
             <i className="fa fa-bars"></i>
@@ -20,10 +34,7 @@ export default class Toolbar extends React.Component {
             <span>Music</span>
           </a>
         </div>
-        <div className="toolbar-search ">
-           <input type="text" defaultValue="The revenant" spellCheck="false" placeholder="The revenant" />
-           <i className="fa fa-search"></i>
-        </div>
+        <ToolbarSearch onFocusChange={ hasFocus => this.setState({ searchActive: hasFocus })}/>
       </header>
     );
   }

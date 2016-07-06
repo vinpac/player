@@ -82,3 +82,25 @@
   display: flex;
   flex: 1 1 auto;
 }
+
+ul.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  > li {
+    > a {
+      display: block;
+      padding: 10px;
+
+      &:hover {
+        background: rgba(0,0,0,.05)
+      }
+    }
+  }
+}
+
+.background-image {
+  background-size: cover;
+  background-position: center;
+}

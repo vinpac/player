@@ -5,12 +5,13 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "debug": "^2.2.0",
+    "history": "^2.0.0",
     "open": "0.0.5",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
-    "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.4",
+    "react-router": "^2.5.2",
+    "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "when": "^3.7.7"
