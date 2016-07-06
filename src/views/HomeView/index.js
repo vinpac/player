@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+import ServerApi from '../../services/ServerApi';
 import React, { PropTypes } from 'react';
 import { connect } from "react-redux";
 //import ImageCover from './image.png';
@@ -28,18 +30,8 @@ class HomeView extends React.Component {
 
   getAlbum(id) {
     const self = this;
-    AlbumModel
-      .findOne({ id })
-      .then( album => AuthorModel
-          .findOne({ "id": album.authorId })
-          .then(author => ({ album, author }))
-      )
-      .then( data => SongModel
-          .find({ "albumId": data.album.id })
-          .then(songs => {
-            return { ...data, songs }
-          })
-      )
+    ServerApi
+      .getAlbumById(id)
       .then( data => {
         let length = 0;
         data.songs.forEach( song => length += song.length )
@@ -55,6 +47,20 @@ class HomeView extends React.Component {
     this.props.dispatch({
       type: "ADD"
     })
+  }
+
+  renderSong(song, i) {
+    return (
+      <tr className="song" key={ song.id }>
+        <td>{ i + 1 }</td>
+        <td>{ song.title }</td>
+        <td className="song-length">{ song.length }</td>
+        <td className="song-popularity">
+          {[1,2,3,4,5].map( n => <i key={n} className={ classNames("fa fa-circle", { "active": song.popularity >= n } ) }></i> )}
+        </td>
+        <td><button className="btn btn-primary btn-sm fill-width">R$3,19</button></td>
+      </tr>
+    )
   }
 
   render() {
@@ -146,6 +152,24 @@ class HomeView extends React.Component {
                 <a href="">About</a>
               </li>
             </ul>
+          </div>
+        </div>
+        <div className="tab-content">
+          <div className="songs">
+            <div className="container">
+              <table className="songs-table">
+                <tbody>
+                  <tr className="table-header">
+                    <th width="60"></th>
+                    <th>Music</th>
+                    <th className="song-length"><i className="fa fa-clock-o"></i></th>
+                    <th>Popularity</th>
+                    <th width="100"></th>
+                  </tr>
+                  { songs.map( this.renderSong ) }
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

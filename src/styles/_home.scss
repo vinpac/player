@@ -105,4 +105,61 @@ $color: #F73C45;
     }
   }
 
+  .songs {
+    padding-bottom: 500px;
+    padding-top: 50px;
+
+    .songs-table {
+      width: 100%;
+      font-size: 18px;
+
+      th {
+        text-align: left;
+        font-weight: 500;
+      }
+
+      .song {
+        cursor: pointer;
+        height: 50px;
+
+        &:hover {
+          background:rgba(0,0,0,.05);
+        }
+
+        > td {
+          &:first-child {
+            padding-left: 20px;
+          }
+
+          &:last-child {
+            padding-right: 20px;
+          }
+        }
+      }
+
+      .song-length {
+        text-align: center !important;
+      }
+
+      .song-popularity {
+        > i {
+          font-size: 12px;
+          margin-right: 5px;
+          color: #C7C7C7;
+          &.active {
+            color: #767676;
+          }
+        }
+      }
+
+      td.song-length {
+        @extend .legend-color;
+      }
+
+      .table-header {
+        height: 50px;
+      }
+    }
+  }
+
 }

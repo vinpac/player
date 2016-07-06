@@ -10,6 +10,12 @@
   display: inline-block;
 }
 
+.btn.btn-sm {
+  height: 36px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
 .btn-light {
   background: rgba(255,255,255,.9);
   color: $colorPrimary;

@@ -1,5 +1,5 @@
 import when from 'when';
-import { AlbumModel, AuthorModel, SoundModel } from './Models';
+import { AlbumModel, AuthorModel, SongModel } from './Models';
 import { ArrayToObject } from '../utils/Utils';
 
 
@@ -26,5 +26,20 @@ export default {
         })
       )
       .then(delay(200))
+  },
+
+  getAlbumById(id) {
+    return AlbumModel
+      .findOne({ id })
+      .then( album => AuthorModel
+          .findOne({ "id": album.authorId })
+          .then(author => ({ album, author }))
+      )
+      .then( data => SongModel
+          .find({ "albumId": data.album.id })
+          .then(songs => {
+            return { ...data, songs }
+          })
+      )
   }
 }

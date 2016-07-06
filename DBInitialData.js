@@ -54,9 +54,24 @@ export default {
   Song:  [
     {
       id: "1",
-      name: "Panda",
+      title: "Panda",
       albumId: "1",
+      popularity: 3,
       length: 246
-    }
+    },
+    {
+      id: "2",
+      title: "Panda",
+      albumId: "1",
+      popularity: 3,
+      length: 246
+    },
+    {
+      id: "3",
+      title: "Panda",
+      albumId: "1",
+      popularity: 3,
+      length: 246
+    },
   ]
 }
