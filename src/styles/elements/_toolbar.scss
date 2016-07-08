@@ -7,6 +7,10 @@
   z-index: 10;
   transition: background .2s, top .2s, box-shadow .2s;
 
+  &.toolbar-active {
+    box-shadow: 0 1px 8px rgba(0,0,0,.3);
+  }
+
   .toolbar-header {
     float: left;
   }

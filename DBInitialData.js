@@ -1,25 +1,21 @@
 export default {
   Author: [
     {
-      id: "1",
       name: "Desiigner"
     },
     {
-      id: "2",
       name: "Lana del Rey"
     },
     {
-      id: "3",
       name: "Jamie XX"
     }
   ],
   Album: [
     {
-      id: "1",
-      title: "Panda",
-      authorId: "1",
+      title: "New English",
+      authorId: 0,
       description: "Born to Die is the second studio album and major-label debut by American singer and songwriter Lana Del Rey. It was released on January 27, 2012 by Interscope Records, Polydor Records, and Stranger Records.",
-      image: "https://i1.sndcdn.com/artworks-000139618215-ubm1i6-t500x500.jpg",
+      image: "http://images.complex.com/complex/image/upload/t_article_image/czaknved7kxureibd29a.jpg",
       color: "#2D2B29",
       cover: {
         color: "#000"
@@ -27,10 +23,9 @@ export default {
       genre: "Eletronic"
     },
     {
-      id: "2",
       title: "Born to Die",
       color: "#3D5599",
-      authorId: "2",
+      authorId: 1,
       description: "Born to Die is the second studio album and major-label debut by American singer and songwriter Lana Del Rey. It was released on January 27, 2012 by Interscope Records, Polydor Records, and Stranger Records.",
       image: "https://upload.wikimedia.org/wikipedia/en/2/29/BornToDieAlbumCover.png",
       cover: {
@@ -39,39 +34,61 @@ export default {
       genre: "Pop Music"
     },
     {
-      id: "3",
       title: "In Colour",
       color: "#F73C45",
-      authorId: "3",
+      authorId: 2,
       description: "Born to Die is the second studio album and major-label debut by American singer and songwriter Lana Del Rey. It was released on January 27, 2012 by Interscope Records, Polydor Records, and Stranger Records.",
       image: "https://upload.wikimedia.org/wikipedia/en/c/c2/Jamie_xx_-_In_Colour.png",
       cover: {
         image: "http://assets.rollingstone.com/assets/2015/media/196748/_original/1432069197/1035x1035-MI0003854027.jpg"
       },
       genre: "Electronica, House"
-    }
+    },
+    {
+      title: "SoundCloud",
+      color: "#3A143D",
+      authorId: 2,
+      description: "Born to Die is the second studio album and major-label debut by American singer and songwriter Lana Del Rey. It was released on January 27, 2012 by Interscope Records, Polydor Records, and Stranger Records.",
+      image: "https://i1.sndcdn.com/artworks-000158918628-iyz51p-t500x500.jpg",
+      cover: {
+        image: "https://a-v2.sndcdn.com/assets/images/front/search-hero/zedsdead-fc6718.jpg"
+      },
+      genre: "Electronica, House"
+    },
   ],
   Song:  [
     {
-      id: "1",
-      title: "Panda",
-      albumId: "1",
+      title: "Intro - Desiigner/New English",
+      albumId: 0,
       popularity: 3,
       length: 246
     },
     {
-      id: "2",
-      title: "Panda",
-      albumId: "1",
-      popularity: 3,
-      length: 246
+      title: "Caliber",
+      albumId: "0",
+      popularity: 4,
+      length: 123
     },
     {
-      id: "3",
-      title: "Panda",
-      albumId: "1",
+      title: "Make It Out",
+      albumId: 0,
+      popularity: 4,
+      length: 170
+    },
+    {
+      title: "Shooters",
+      albumId: 0,
       popularity: 3,
-      length: 246
+      length: 89
+    },
+    {
+      title: "Panda",
+      albumId: 0,
+      popularity: 5,
+      length: 89,
+      source: {
+        sound_cloud: "/tracks/237603952"
+      }
     },
   ]
 }

@@ -119,20 +119,77 @@ $color: #F73C45;
       }
 
       .song {
-        cursor: pointer;
         height: 50px;
 
         &:hover {
           background:rgba(0,0,0,.05);
+          .song-add-button {
+            @extend .song-add-button:hover;
+          }
+
+          .song-index {
+            > button {
+              display: inline-block;
+            }
+
+            > span {
+              display: none;
+            }
+          }
         }
 
         > td {
           &:first-child {
-            padding-left: 20px;
+            padding-left: 10px;
           }
 
           &:last-child {
-            padding-right: 20px;
+            padding-right: 10px;
+          }
+        }
+      }
+
+      .song-index{
+        text-align: center;
+        > button {
+          display: none;
+        }
+      }
+
+      .song-play-button {
+        background: none;
+        border-radius: 50%;
+        font-size: 14px;
+        color: $colorPrimary;
+        border:1px solid $colorPrimary;
+        padding-left: 9px;
+        width: 32px;
+        height: 32px;
+
+        &:hover {
+          background: $colorPrimary;
+          color: #fff;
+        }
+      }
+
+      .song-name-col {
+        padding-left: 15px;
+      }
+
+      .song-add-button {
+        width: 42px;
+        height: 42px;
+        border: 0;
+        background: none;
+        padding: 11px;
+
+        path {
+          fill: #454545;
+        }
+
+        &:hover {
+          path {
+            fill: $colorPrimary;
           }
         }
       }

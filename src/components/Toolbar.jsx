@@ -3,10 +3,53 @@ import classnames from 'classnames';
 import React from 'react';
 
 export default class Toolbar extends React.Component {
+
+  ACTIVE_SCROLL_POS = 100;
+
   constructor(props) {
     super(props);
     this.state = {
-      searchActive: false
+      active: false
+    }
+    this.handleScroll = this.handleScroll.bind(this)
+    this.toggleActive = this.toggleActive.bind(this)
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active != this.props.active) {
+      if (nextProps.active) {
+        window.addEventListener('scroll', this.handleScroll);
+      } else {
+        window.removeEventListener('scroll', this.handleScroll);
+      }
+      this.setState({ active: nextProps.active });
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    if (event.srcElement.body.scrollTop > this.ACTIVE_SCROLL_POS) {
+      if (!this.state.active)
+        return  this.setState({ active: true })
+    } else if (this.state.active) {
+      return this.setState({ active: false })
+    }
+  }
+
+  toggleActive(hasFocus) {
+    if (document.body.scrollTop > this.ACTIVE_SCROLL_POS) {
+      if (!this.state.active) {
+        this.setState({ active: true })
+      }
+    } else {
+      this.setState({ active: hasFocus })
     }
   }
 
@@ -15,7 +58,7 @@ export default class Toolbar extends React.Component {
       "toolbar",
       {
         "toolbar-light": !!this.props.light,
-        "toolbar-search-ative": this.state.searchActive
+        "toolbar-active": this.state.active
       },
       this.props.className
     );
@@ -34,7 +77,7 @@ export default class Toolbar extends React.Component {
             <span>Music</span>
           </a>
         </div>
-        <ToolbarSearch onFocusChange={ hasFocus => this.setState({ searchActive: hasFocus })}/>
+        <ToolbarSearch onFocusChange={ hasFocus => this.toggleActive( hasFocus ) }/>
       </header>
     );
   }

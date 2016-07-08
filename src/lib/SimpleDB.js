@@ -17,7 +17,7 @@ class SimpleDB {
     localStorage.setItem(key, JSON.stringify({ __data__: model.__data__}))
   }
 
-  getModel(name) {
+  getModel(name, primaryKey) {
     const key = this.getModelKey(name);
     const value = localStorage.getItem(key);
     if (value) {
@@ -32,7 +32,8 @@ class SimpleDB {
         localStorage.removeItem(key)
         return null;
       }
-      return new Model(name, obj.__data__)
+
+      return new Model(name, obj.__data__, primaryKey)
     }
   }
 
@@ -40,20 +41,28 @@ class SimpleDB {
     return this.key + "/" + name;
   }
 
-  model(name, data, forceInitialData, primaryKey) {
-    let model = SimpleDBInstance.getModel(name);
+  newId() {
+    return Math.floor((1 + Date.now() + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+
+  model(params) {
+    if (!params) return;
+    const primaryKey = params.primaryKey || "id";
+    const model = SimpleDBInstance.getModel(params.name, primaryKey);
+    const data  = params.data || [];
+
+
     if (model){
-      if (forceInitialData) {
-        primaryKey = primaryKey || "id";
-        const primaryKeysFound = data.map( obj => obj[primaryKey] )
-        model.__data__ = model.__data__
-          .filter(
-            obj => primaryKeysFound.indexOf(obj[primaryKey]) < 0
-          )
-          .concat(data)
+      if (params.forceInitialData) {
+        data.forEach((doc, i) => model.addOrUpdate({...doc, id: i + ""}))
       }
+
+      return model;
     }
-    return (new Model(name, data)).store();
+
+    return (new Model(params.name, data, primaryKey)).store();
   }
 }
 
@@ -65,8 +74,12 @@ export default SimpleDBInstance;
 
 export class Model {
 
-  constructor(name, data) {
-    this.__data__ = Array.isArray(data) ? data : [];
+  constructor(name, data, primaryKey) {
+    this.primaryKey = primaryKey;
+    if (Array.isArray(data)) {
+      data.forEach((doc, i) => doc[primaryKey] || (doc[primaryKey] = i + ""))
+    }
+    this.__data__ = data || [];
     this.name = name;
   }
 
@@ -77,6 +90,21 @@ export class Model {
 
   find(query) {
     return (new Query(this, query)).exec();
+  }
+
+  addOrUpdate(doc) {
+    let found = false;
+    this.__data__.forEach((_doc, i) => {
+      if (_doc[this.primaryKey] === doc[this.primaryKey]) {
+        this.__data__[i] = Object.assign(_doc, doc);
+        found = true;
+        return false;
+      }
+    })
+
+    if (!found) {
+      this.__data__.push(doc);
+    }
   }
 
   store() {

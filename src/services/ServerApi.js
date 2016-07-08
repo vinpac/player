@@ -11,15 +11,18 @@ export default {
       .find({
         title: new RegExp(value, "gi")
       })
-      .then( albums => AuthorModel
+      .then(albums => {
+        return albums;
+      })
+      .then(albums => AuthorModel
         .find({
           id: {
-            $in: albums.map( album => album.authorId )
+            $in: albums.map( album => "" + album.authorId )
           }
         })
-        .then( authors => {
+        .then(authors => {
           const authorsObj = ArrayToObject(authors, 'id');
-          albums.forEach( album => {
+          albums.forEach(album => {
             album.author_name = authorsObj[album.authorId].name;
           })
           return albums;

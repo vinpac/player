@@ -2,14 +2,15 @@ import classNames from 'classnames';
 import ServerApi from '../../services/ServerApi';
 import React, { PropTypes } from 'react';
 import { connect } from "react-redux";
+import ImagePlus from '../../static/img/plus.svg';
 //import ImageCover from './image.png';
 //import ImageCoverBG from '../../static/img/cover-bg.jpg';
+import { parseSongDuration } from '../../utils/Utils';
 import { AuthorModel, AlbumModel, SongModel } from '../../services/Models';
 
 class HomeView extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
+
+  ACTIVE_SCROLL_POS = 100;
 
   constructor(props) {
     super(props);
@@ -52,13 +53,22 @@ class HomeView extends React.Component {
   renderSong(song, i) {
     return (
       <tr className="song" key={ song.id }>
-        <td>{ i + 1 }</td>
-        <td>{ song.title }</td>
-        <td className="song-length">{ song.length }</td>
+        <td className="song-index">
+          <span>{ i + 1 }</span>
+          <button className="song-play-button"><i className="fa fa-play"></i></button>
+        </td>
+        <td className="text-center">
+          <button className="song-add-button">
+            <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47 47"><g><g>
+              <path d="M23,47c1.104,0,2-0.896,2-2V24.619h19.5c1.104,0,2-0.896,2-2s-0.896-2-2-2H25V2c0-1.104-0.896-2-2-2s-2,0.896-2,2v18.619     H2.5c-1.104,0-2,0.896-2,2s0.896,2,2,2H21V45C21,46.104,21.896,47,23,47z"/> </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+            </svg>
+          </button>
+        </td>
+        <td className="song-name-col">{ song.title }</td>
+        <td className="song-length">{ parseSongDuration(song.length) }</td>
         <td className="song-popularity">
           {[1,2,3,4,5].map( n => <i key={n} className={ classNames("fa fa-circle", { "active": song.popularity >= n } ) }></i> )}
         </td>
-        <td><button className="btn btn-primary btn-sm fill-width">R$3,19</button></td>
       </tr>
     )
   }
@@ -83,7 +93,7 @@ class HomeView extends React.Component {
               background-color: ${ album.color }
             }
 
-            .toolbar-search-ative {
+            .toolbar-active {
               background-color: ${ album.color }
             }
 
@@ -161,10 +171,10 @@ class HomeView extends React.Component {
                 <tbody>
                   <tr className="table-header">
                     <th width="60"></th>
-                    <th>Music</th>
+                    <th width="50"></th>
+                    <th className="song-name-col">Music</th>
                     <th className="song-length"><i className="fa fa-clock-o"></i></th>
-                    <th>Popularity</th>
-                    <th width="100"></th>
+                    <th width="100" >Popularity</th>
                   </tr>
                   { songs.map( this.renderSong ) }
                 </tbody>
