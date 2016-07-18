@@ -11,6 +11,28 @@ export default class Player extends React.Component {
     super(props);
   }
 
+  test() {
+    SC.initialize({
+      client_id: 'b096d3e942b0519f72e3b77c5418138e'
+    });
+
+    // stream track id 293
+    SC.stream('/tracks/237603952').then(function(player){
+      try {
+        console.log(player);
+        player.setVolume(.0)
+        player.on('time', (a) => {
+          console.log(player.currentTime());
+        })
+        //player.play();
+      } catch(e) {
+        console.error(e)
+      }
+
+
+    });
+  }
+
   render() {
     return (
       <div className="player">
